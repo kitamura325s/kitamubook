@@ -1,10 +1,17 @@
 class PicturesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_picture, only: [:edit, :update, :destroy]
+  before_action :set_picture, only: [:show, :edit, :update, :destroy]
   
   def index
-    @pictures = Picture.all
+    #@pictures = Picture.all.order("id DESC")
+    @pictures = Picture.page(params[:page]).order("id DESC")
   end
+
+ # showアククションを定義します。入力フォームと一覧を表示するためインスタンスを2つ生成します。
+ def show
+    @comment = @picture.comments.build
+    @comments = @picture.comments
+ end
 
   def new
     if params[:back]
@@ -18,7 +25,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new(pictures_params)
     @picture.user_id = current_user.id
     if @picture.save
-      redirect_to pictures_path, notice: "写真を投稿しました！"
+      redirect_to pictures_path, notice: "投稿しました！"
       #NoticeMailer.sendmail_picture(@picture).deliver
     else
       render 'new'

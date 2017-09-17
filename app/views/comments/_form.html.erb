@@ -1,0 +1,9 @@
+<%= form_for([picture, comment], remote: true) do |f| %>
+  <%= f.hidden_field :picture_id %>
+  <div class="field">
+    <%= f.text_field :content, placeholder: "内容", class: "form-control"  %>
+  </div>
+  <div class="actions">
+    <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
+  </div>
+<% end %>

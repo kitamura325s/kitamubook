@@ -1,0 +1,36 @@
+<!-- メッセージが10件以上あれば以前のメッセージへのリンクを表示する -->
+<% if @over_ten %>
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>
+
+<!-- メッセージを一件ずつ抽出してメッセージの内容があればユーザ名や内容を表示 -->
+<div class="ui segment">
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <% user = User.find(message.user_id) %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+              <%= message.body %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- 会話にひもづくメッセージの入力フォームを投稿者を自分に指定して生成する -->
+<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+  <div class="field">
+    <%= f.text_area :body, class: 'form-control input-lg', size: "1x5" %>
+  </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div>
+    <%= f.submit "送信", class: "btn btn-large btn-primary" %>
+  </div>
+
+<% end %>

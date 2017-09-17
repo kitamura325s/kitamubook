@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h2>フォロー</h2>
+  <% @user.followed_users.each do |followed| %>
+      <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
+        <%= profile_img(followed) %></br>
+        <strong><%= followed.name %></strong></br>
+      </div>
+  <% end %>
+</div>
+
+<div class="container">
+  <h2>フォロワー</h2>
+  <% @user.followers.each do |followers| %>
+      <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
+        <%= profile_img(followers) %></br>
+        <strong><%= followers.name %></strong></br>
+      </div>
+  <% end %>
+</div>
+
+<%= link_to '戻る', users_path %>

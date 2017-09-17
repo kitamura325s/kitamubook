@@ -2,16 +2,25 @@
   <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
     <p><%= notice %></p>
     
-    <%= link_to new_picture_path do %>投稿<i class="fa fa-camera fa-fw fa-2x"></i><% end %>
+    <%= link_to new_picture_path do %><i class="fa fa-pencil-square-o fa-fw fa-2x"></i><% end %>
     
     <% @pictures.each do |picture| %>
     <div class="row">
-      <p><%= profile_img(picture.user) %> <%= picture.user.name %></p>
-      <p><%= picture_img(picture) %>
-      <p><%= picture.content %></p>
+      <p><%= picture.picture_time %></p>
+      <div class="userBox">
+        <p class="img"><%= profile_img(picture.user)%></p> <p><%= picture.user.name %></p>
+      </div>
+      <%= link_to picture_path(picture) do %>
+        <p><%= truncate(picture.content, :length => 15) %></p>
+      <% end %>
+      
+      <!-- 詳細ページに実装
       <%= link_to "編集", edit_picture_path(picture.id), class: 'btn btn-default btn-sm btn-info' %>
       <%= link_to "削除", picture_path(picture.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-info' %>
+      -->
     </div>
     <% end %>
+    
+    <%= paginate @pictures %>
   </div>
 </div>

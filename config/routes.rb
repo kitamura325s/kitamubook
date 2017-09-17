@@ -4,7 +4,14 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  resources :pictures, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :users, only: [:index, :show]
+  resources :pictures do
+    resources :comments
+  end
+  resources :relationships, only: [:create, :destroy]
+  resources :conversations do
+    resources :messages
+  end
 
   root 'top#index'
 
