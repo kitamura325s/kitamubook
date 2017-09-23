@@ -11,21 +11,23 @@
   password = "password"
   uid = Faker::Lorem.characters(37)
   image_path = File.join(Rails.root, "db/seed/girl.png")
+  image = File.new(image_path)
   User.create!(email: email,
                name: name,
                password: password,
                password_confirmation: password,
                uid: uid,
                provider: "",
-               avatar: image_path
+               avatar: image
                )
 end
 
 10.times do |n|
   content = Faker::HarryPotter.quote
   image_path = File.join(Rails.root, "db/seed/mahoutsukai_man.png")
+  image = File.new(image_path)
   Picture.create!(content: content,
-               image: image_path,
+               image: image,
                user_id: n + 1
                )
 end
