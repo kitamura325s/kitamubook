@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-100.times do |n|
+10.times do |n|
   email = Faker::Internet.email
   name = Faker::Name.name
   password = "password"
@@ -21,7 +21,7 @@
                )
 end
 
-100.times do |n|
+10.times do |n|
   content = Faker::HarryPotter.quote
   image = File.new("/home/ubuntu/workspace/kitamubook/public/uploads/picture/image/201/DSC_1343_xlarge.JPG")
   Picture.create!(content: content,
@@ -30,7 +30,7 @@ end
                )
 end
 
-100.times do |n|
+10.times do |n|
   content = Faker::HarryPotter.book
   Comment.create!(content: content,
                user_id: n + 1,
