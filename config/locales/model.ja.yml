@@ -4,6 +4,8 @@ ja:
       picture: "写真"
       user: "ユーザー"
     attributes:
+      picture:
+        content: "本文"
       user:
         title: "タイトル"
         name: "名前"

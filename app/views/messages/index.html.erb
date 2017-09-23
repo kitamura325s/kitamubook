@@ -1,3 +1,8 @@
+<% flash.each do |key, value| %>
+  <% key = "info" if key == "notice" %>
+  <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+<% end %>
+
 <!-- メッセージが10件以上あれば以前のメッセージへのリンクを表示する -->
 <% if @over_ten %>
   <%= link_to '以前のメッセージ', '?m=all' %>

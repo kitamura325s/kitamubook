@@ -40,6 +40,8 @@ class MessagesController < ApplicationController
     #保存ができれば、会話にひもづくメッセージ一覧の画面に遷移する
     if @message.save
       redirect_to conversation_messages_path(@conversation)
+    else
+      redirect_to conversation_messages_path, notice: "メッセージは空の内容で送信できません！"
     end
   end
   
