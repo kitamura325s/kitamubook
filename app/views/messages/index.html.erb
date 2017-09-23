@@ -12,7 +12,7 @@
 <div class="ui segment">
   <% @messages.each do |message| %>
     <% if message.body %>
-      <% user = User.find(message.user_id) %>
+      <% user = message.user %>
       <div class="item">
         <div class="content">
           <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
